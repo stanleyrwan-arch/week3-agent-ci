@@ -92,6 +92,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Ensure remediation demo dependency is absent
+        run: |
+          pip uninstall -y humanize || true
+
       - name: Skip irrelevant tests
         if: needs.select-tests.outputs.test_mode == 'skip'
         run: |
